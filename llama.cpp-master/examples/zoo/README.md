@@ -1,4 +1,4 @@
-# Prism On-Device Engine (Based on llama.cpp)
+# Prism On-Device Engine
 
 This directory contains the core on-device fine-tuning engine for the Prism project. The complete Zeroth-Order (ZO) fine-tuning logic is implemented in `examples/zoo/llama-zoo.cpp`. 
 
@@ -23,20 +23,31 @@ Since the engine runs natively on Android devices, cross-compilation is required
 
 ## 2. Model Preparation
 
-After compilation, you need to prepare and convert the pre-trained model (using TinyLlama as an example) into the format required by the engine.
+After compilation, you need to prepare the dataset and convert the pre-trained model (using TinyLlama as an example) into the format required by the engine.
 
 ```bash
-# Activate your Python virtual environment (Adjust the path accordingly)
-source ../../llama/bin/activate
+# Navigate to the llama.cpp-master root directory
+cd ../..
+
+# Create and activate a Python virtual environment
+python3 -m venv llama
+source ./llama/bin/activate
+
+# Install necessary dependencies
+pip install gguf
+pip install -U "huggingface_hub[cli]"
+pip install -U huggingface_hub
+pip install datasets
 
 # Download the pre-trained TinyLlama model to a local directory
-hf download TinyLlama/TinyLlama-1.1B-Chat-v1.0 --local_dir [Your Model Path]
-
-# Return to the llama.cpp-master root directory
-cd ../../
+hf download TinyLlama/TinyLlama-1.1B-Chat-v1.0 --local_dir [Your Model Path] 
 
 # Convert the Hugging Face model to GGUF format with f16 precision
 python convert_hf_to_gguf.py [Your Model Path] --outfile examples/zoo/tinyllama-1.1b-chat.gguf --outtype f16
+
+# Navigate back to the zoo directory and export the SST-2 dataset
+cd examples/zoo
+python export_sst2_tsv.py
 ```
 
 ## 3. File Transfer and Execution
@@ -44,16 +55,15 @@ python convert_hf_to_gguf.py [Your Model Path] --outfile examples/zoo/tinyllama-
 For the actual on-device execution, connect your Android smartphone to the PC via USB and enable **USB Debugging**. Then, run the following commands in your PC terminal to deploy and launch the fine-tuning task:
 
 ```bash
-# Navigate to the zoo directory
-cd examples/zoo
-
 # Create an independent working directory on the device via adb
 adb shell "cd /data/local/tmp && rm -rf llama-zoo && mkdir llama-zoo"
 
 # Push the converted model and necessary shared libraries to the device
 adb push ./tinyllama-1.1b-chat.gguf /data/local/tmp/llama-zoo
 adb push ./libc++_shared.so /data/local/tmp/llama-zoo
-adb push libomp.so /data/local/tmp/llama-zoo
+adb push ./libomp.so /data/local/tmp/llama-zoo
+adb push ./sst2_eval.tsv /data/local/tmp/llama-zoo
+adb push ./sst2_train.tsv /data/local/tmp/llama-zoo
 
 # Navigate to the build directory and push the compiled executable
 cd build
