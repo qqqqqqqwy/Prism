@@ -1,0 +1,13 @@
+sh ./experiments/quankai/run.sh
+sh ./experiments/fo/run.sh
+sh ./experiments/mezo/run.sh
+sh ./experiments/mobizo/run.sh
+sh ./experiments/sign/run.sh
+sh ./experiments/wo1/run.sh
+sh ./experiments/wo2/run.sh
+sh ./experiments/wo3/run.sh
+sh ./experiments/lora_a16_r8/run.sh
+sh ./experiments/lora_a16_r16/run.sh
+sh ./experiments/lora_a32_r16/run.sh
+sh ./experiments/lora_a64_r32/run.sh
+sh ./experiments/zero_shot/run.sh
