@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.14)                                                    
+
+set(TARGET llama-npu-decode)
+add_executable(${TARGET} llama-npu-decode.cpp)
+target_link_libraries(${TARGET} PRIVATE llama ${CMAKE_THREAD_LIBS_INIT})
+target_compile_features(${TARGET} PRIVATE cxx_std_17)
+install(TARGETS ${TARGET} RUNTIME) 
