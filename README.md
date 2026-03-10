@@ -15,7 +15,7 @@ Prism addresses the critical memory bottlenecks of on-device backpropagation and
 This repository is organized into two main components, separating the server-side experimental simulations from the actual on-device deployment:
 
 - **`server/`**: The Python-based training framework and benchmarking suite. It contains scripts for evaluating various architectures (e.g., LLaMA, Phi, Qwen, TinyLlama), comparing First-Order (FO) and ZO optimization. For setup and execution details, refer to [`server/README.md`](./server/README.md).
-- **`llama.cpp-master/`**: The mobile-native C++ inference and fine-tuning engine, built upon `llama.cpp`. This directory includes the core ZO operators, in-place memory management, NPU backend acceleration, and energy profiling integrations. For cross-compilation guidelines (Android NDK) and on-device execution, refer to [`llama.cpp-master/README.md`](./llama.cpp-master/README.md).
+- **`llama.cpp-master/`**: The mobile-native C++ inference and fine-tuning engine, built upon `llama.cpp`. This directory includes the core ZO operators, in-place memory management, NPU backend acceleration, and energy profiling integrations. For cross-compilation guidelines (Android NDK) and on-device execution, refer to [`llama.cpp-master/examples/zoo/README.md`](./llama.cpp-master/examples/zoo/README.md).
 
 ## Hardware Evaluation
 
