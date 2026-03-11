@@ -59,7 +59,7 @@ class FakeQuantLinear(nn.Linear):
 
     def pseudo_quantize(self, w):
         max_val = w.abs().max()
-        scale = max_val / (self.qmax) # 量化缩放因子
+        scale = max_val / (self.qmax)
         
         w_int = (w / scale).round().clamp(self.qmin, self.qmax)
         w_float_simulated = w_int * scale
