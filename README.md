@@ -30,4 +30,4 @@ Prism has been extensively evaluated and benchmarked on commodity Android smartp
 Because the server-side simulation (Python) and the on-device engine (C/C++) require entirely different toolchains and dependencies, please consult the specific documentation in each sub-directory:
 
 1. **Server-Side Evaluation:** Navigate to the `server/` directory for data loading, environment setup, and batch experiment scripts.
-2. **On-Device Deployment:** Navigate to the `llama.cpp-master/` directory for instructions on cross-compiling the engine and launching fine-tuning tasks via the Android shell.
+2. **On-Device Deployment:** Navigate to the `llama.cpp-master/examples/zoo` directory for instructions on cross-compiling the engine and launching fine-tuning tasks via the Android shell.
