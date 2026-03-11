@@ -20,9 +20,9 @@ CUDA_VISIBLE_DEVICES=0 python main.py \
     --split false \
     --task_name "sst2" \
     --zo_mode "single" \
-    --enable_mixed_layer_quantization false \
-    --enable_early_exit false \
-    --lowrank false
+    --enable_mixed_layer_quantization true \
+    --enable_early_exit true\
+    --lowrank true
 
 CUDA_VISIBLE_DEVICES=0 python main.py \
     --compute_dtype "fp16" \
@@ -46,9 +46,9 @@ CUDA_VISIBLE_DEVICES=0 python main.py \
     --split false \
     --task_name "qqp" \
     --zo_mode "single" \
-    --enable_mixed_layer_quantization false \
-    --enable_early_exit false \
-    --lowrank false
+    --enable_mixed_layer_quantization true \
+    --enable_early_exit true\
+    --lowrank true
 
 CUDA_VISIBLE_DEVICES=0 python main.py \
     --compute_dtype "fp16" \
@@ -72,9 +72,9 @@ CUDA_VISIBLE_DEVICES=0 python main.py \
     --split false \
     --task_name "wsc" \
     --zo_mode "single" \
-    --enable_mixed_layer_quantization false \
-    --enable_early_exit false \
-    --lowrank false
+    --enable_mixed_layer_quantization true \
+    --enable_early_exit true\
+    --lowrank true
 
 CUDA_VISIBLE_DEVICES=0 python main.py \
     --compute_dtype "fp16" \
@@ -98,6 +98,6 @@ CUDA_VISIBLE_DEVICES=0 python main.py \
     --split false \
     --task_name "wnli" \
     --zo_mode "single" \
-    --enable_mixed_layer_quantization false \
-    --enable_early_exit false \
-    --lowrank false
+    --enable_mixed_layer_quantization true \
+    --enable_early_exit true\
+    --lowrank true
